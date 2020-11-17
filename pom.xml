@@ -66,6 +66,7 @@
 				<configuration>
 					<args>
 						<arg>-Xjsr305=strict</arg>
+						<arg>-Xcoroutines=enable</arg>
 					</args>
 					<compilerPlugins>
 						<plugin>spring</plugin>
