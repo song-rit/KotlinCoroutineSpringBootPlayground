@@ -1,4 +1,4 @@
-package i.am.song.cpe.KotlinCoroutineSpringBootPlayground
+package i.am.song.cpe
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
