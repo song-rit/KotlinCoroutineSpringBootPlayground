@@ -6,7 +6,7 @@ class LaunchPlayground {
 
     private val greetingService = GreetingService()
 
-    fun doGreetingInMainThread() {
+    fun doGreetingOnMainThread() {
         // block the main thread
         greetingService.greeting()
     }

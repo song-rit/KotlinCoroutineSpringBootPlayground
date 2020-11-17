@@ -8,6 +8,6 @@ class LaunchPlaygroundTest {
 
     @Test
     fun doGreetingInMainThreadTest() {
-        launchPlayground.doGreetingInMainThread()
+        launchPlayground.doGreetingOnMainThread()
     }
 }
