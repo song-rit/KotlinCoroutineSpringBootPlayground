@@ -10,7 +10,7 @@ object RecordTimeInstance {
     }
 
     fun printStartExecuteTime(execClassName: String) {
-        println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (end)")
+        println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (start)")
     }
     fun printEndExecuteTime(execClassName: String) {
         println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (end)")
