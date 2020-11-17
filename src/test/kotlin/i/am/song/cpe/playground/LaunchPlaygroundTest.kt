@@ -1,6 +1,7 @@
 package i.am.song.cpe.playground
 
 import org.junit.jupiter.api.Test
+import kotlin.system.measureTimeMillis
 
 class LaunchPlaygroundTest {
 
@@ -8,12 +9,28 @@ class LaunchPlaygroundTest {
 
     @Test
     fun doGreetingInMainThreadTest() {
-        launchPlayground.doGreetingOnMainThread()
+        val time = measureTimeMillis() {
+            launchPlayground.doGreetingOnMainThread()
+            Thread.sleep(1)
+        }
+        println("total time: $time")
     }
 
     @Test
     fun doGreetingByLaunchWithGlobalScopeTest() {
-        launchPlayground.doGreetingByLaunchWithGlobalScope()
-        Thread.sleep(4000)
+        val time = measureTimeMillis() {
+            launchPlayground.doGreetingByLaunchWithGlobalScope()
+            Thread.sleep(3000)
+        }
+        println("total time: $time")
+    }
+
+    @Test
+    fun getGreetingConcatStringByLaunchWithGlobalScopeTest() {
+        val time = measureTimeMillis() {
+            val result = launchPlayground.getGreetingConcatStringByLaunchWithGlobalScope()
+            println("result: $result")
+        }
+        println("total time: $time")
     }
 }

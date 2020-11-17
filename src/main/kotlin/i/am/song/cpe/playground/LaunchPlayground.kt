@@ -27,4 +27,19 @@ class LaunchPlayground {
             greetingService.greeting("hello coroutine 3")
         }
     }
+
+    fun getGreetingConcatStringByLaunchWithGlobalScope(): String {
+        RecordTimeInstance.initExecuteTime()
+        var result = ""
+        GlobalScope.launch(Dispatchers.Default) {
+            result += greetingService.getGreeting("hello coroutine 1") + " | "
+            result += greetingService.getGreeting("hello coroutine 2") + " | "
+            result += greetingService.getGreeting("hello coroutine 3") + " | "
+            result += greetingService.getGreeting("hello coroutine 4") + " | "
+            result += greetingService.getGreeting("hello coroutine 5")
+        }
+        // wait for coroutine thread
+        Thread.sleep(1000)
+        return result
+    }
 }
