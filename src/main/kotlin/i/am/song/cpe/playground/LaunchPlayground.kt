@@ -2,9 +2,8 @@ package i.am.song.cpe.playground
 
 import i.am.song.cpe.common.GreetingService
 import i.am.song.cpe.common.RecordTimeInstance
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import org.springframework.cglib.core.Block
 
 class LaunchPlayground {
 
@@ -19,10 +18,13 @@ class LaunchPlayground {
     }
 
     fun doGreetingByLaunchWithGlobalScope() {
-        GlobalScope.launch {
+        RecordTimeInstance.initExecuteTime()
+        GlobalScope.launch(Dispatchers.Default) {
             greetingService.greeting("hello coroutine 1")
             delay(1000)
             greetingService.greeting("hello coroutine 2")
+            delay(1000)
+            greetingService.greeting("hello coroutine 3")
         }
     }
 }

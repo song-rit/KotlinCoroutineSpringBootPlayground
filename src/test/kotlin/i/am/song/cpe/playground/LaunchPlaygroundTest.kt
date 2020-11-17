@@ -14,5 +14,6 @@ class LaunchPlaygroundTest {
     @Test
     fun doGreetingByLaunchWithGlobalScopeTest() {
         launchPlayground.doGreetingByLaunchWithGlobalScope()
+        Thread.sleep(4000)
     }
 }

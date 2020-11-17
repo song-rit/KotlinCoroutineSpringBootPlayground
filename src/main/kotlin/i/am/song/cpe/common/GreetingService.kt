@@ -9,6 +9,6 @@ class GreetingService {
     }
 
     private fun printMessage(msg: String) {
-        println("$className #${Thread.currentThread().id} -> ${RecordTimeInstance.currentExecuteTime()} millisecond, msg $msg ")
+        println("$className #(name: ${Thread.currentThread().name}, id: ${Thread.currentThread().id} ) -> ${RecordTimeInstance.currentExecuteTime()} millisecond, msg $msg ")
     }
 }
