@@ -3,20 +3,20 @@ package i.am.song.cpe.common
 import java.util.concurrent.TimeUnit
 
 object RecordTimeInstance {
-    private lateinit var execClassName: String
     private var executeTime: Long = 0
 
-    fun initInstance(execClassName: String) {
-        this.execClassName = execClassName
+    fun initExecuteTime() {
         this.executeTime = currentExecuteTime()
-        println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (start)")
     }
 
-    fun printEndExecuteTime() {
+    fun printStartExecuteTime(execClassName: String) {
+        println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (end)")
+    }
+    fun printEndExecuteTime(execClassName: String) {
         println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (end)")
     }
 
-    fun printCurrentExecuteTime() {
+    fun printCurrentExecuteTime(execClassName: String) {
         println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (current)")
     }
 
