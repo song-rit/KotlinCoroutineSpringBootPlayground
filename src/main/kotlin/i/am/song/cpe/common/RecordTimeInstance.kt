@@ -9,17 +9,6 @@ object RecordTimeInstance {
         this.executeTime = currentExecuteTime()
     }
 
-    fun printStartExecuteTime(execClassName: String) {
-        println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (start)")
-    }
-    fun printEndExecuteTime(execClassName: String) {
-        println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (end)")
-    }
-
-    fun printCurrentExecuteTime(execClassName: String) {
-        println("$execClassName #${Thread.currentThread().id} -> ${durationExecuteMillis()} millisecond (current)")
-    }
-
     fun currentExecuteTime(): Long {
        return durationExecuteMillis()
     }

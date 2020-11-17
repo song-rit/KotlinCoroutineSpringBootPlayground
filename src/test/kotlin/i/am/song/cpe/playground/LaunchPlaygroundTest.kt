@@ -10,4 +10,9 @@ class LaunchPlaygroundTest {
     fun doGreetingInMainThreadTest() {
         launchPlayground.doGreetingOnMainThread()
     }
+
+    @Test
+    fun doGreetingByLaunchWithGlobalScopeTest() {
+        launchPlayground.doGreetingByLaunchWithGlobalScope()
+    }
 }
