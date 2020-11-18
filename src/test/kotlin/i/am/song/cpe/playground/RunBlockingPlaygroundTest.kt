@@ -16,6 +16,14 @@ class RunBlockingPlaygroundTest {
     }
 
     @Test
+    fun doGreetingByRunBlockingAndScopeBuilderTest() {
+        val time = measureTimeMillis() {
+            runBlockingPlayground.doGreetingByRunBlockingAndScopeBuilder()
+        }
+        println("total time: $time")
+    }
+
+    @Test
     fun getGreetingConcatStringByLaunchWithGlobalScopeTest() {
         val time = measureTimeMillis() {
             val result = runBlockingPlayground.getGreetingConcatStringByRunBlocking()

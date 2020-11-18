@@ -21,6 +21,16 @@ class RunBlockingPlayground {
         }
     }
 
+    fun doGreetingByRunBlockingAndScopeBuilder() = runBlocking {
+        RecordTimeInstance.initExecuteTime()
+        //blocks the main thread
+            greetingService.greeting("hello coroutine 1")
+            delay(1000)
+            greetingService.greeting("hello coroutine 2")
+            delay(1000)
+            greetingService.greeting("hello coroutine 3")
+    }
+
     fun getGreetingConcatStringByRunBlocking(): String {
         RecordTimeInstance.initExecuteTime()
         var result = ""
