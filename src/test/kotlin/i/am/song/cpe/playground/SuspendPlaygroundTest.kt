@@ -28,4 +28,15 @@ class SuspendPlaygroundTest {
         }
         println("total time: $time")
     }
+
+    @Test
+    fun getGreetingConcatStringByRunBlockingFromSuspendFunctionTest() {
+        val time = measureTimeMillis() {
+            runBlocking {
+                val result = suspendPlayground.getGreetingConcatStringByRunBlockingFromSuspendFunction()
+                println("result: $result")
+            }
+        }
+        println("total time: $time")
+    }
 }
