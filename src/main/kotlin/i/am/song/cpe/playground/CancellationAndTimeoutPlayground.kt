@@ -8,7 +8,7 @@ import kotlin.random.Random
 class CancellationAndTimeoutPlayground {
     private val greetingService = GreetingService()
 
-    suspend fun doGreetingConcatStringWithCancelAble() = withContext(Dispatchers.Default) {
+    suspend fun doGreetingWithCancelAble() = withContext(Dispatchers.Default) {
         RecordTimeInstance.initExecuteTime()
         val job1 = launch {
             repeat(1_000) {
@@ -35,7 +35,7 @@ class CancellationAndTimeoutPlayground {
     }
 
 
-    suspend fun doGreetingConcatStringWithCancelAndJoin() = withContext(Dispatchers.Default) {
+    suspend fun doGreetingWithCancelAndJoin() = withContext(Dispatchers.Default) {
         RecordTimeInstance.initExecuteTime()
         val startTime = System.currentTimeMillis()
         val job = launch(Dispatchers.Default) {
@@ -81,7 +81,7 @@ class CancellationAndTimeoutPlayground {
         return false
     }
 
-    suspend fun doGreetingConcatStringAndHandlerCancellationException() = withContext(Dispatchers.Default) {
+    suspend fun doGreetingAndHandlerCancellationException() = withContext(Dispatchers.Default) {
         RecordTimeInstance.initExecuteTime()
         val job = launch {
             try {

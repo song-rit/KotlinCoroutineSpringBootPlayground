@@ -9,30 +9,30 @@ class CancellationAndTimeoutPlaygroundTest {
     private val cancellationAndTimeoutPlayground = CancellationAndTimeoutPlayground()
 
     @Test
-    fun getGreetingConcatStringWithCancelAbleTest() {
+    fun getGreetingWithCancelAbleTest() {
         val time = measureTimeMillis() {
             runBlocking {
-                cancellationAndTimeoutPlayground.doGreetingConcatStringWithCancelAble()
+                cancellationAndTimeoutPlayground.doGreetingWithCancelAble()
             }
         }
         println("total time: $time")
     }
 
     @Test
-    fun doGreetingConcatStringWithCancelAndJoinTest() {
+    fun doGreetingWithCancelAndJoinTest() {
         val time = measureTimeMillis() {
             runBlocking {
-                cancellationAndTimeoutPlayground.doGreetingConcatStringWithCancelAndJoin()
+                cancellationAndTimeoutPlayground.doGreetingWithCancelAndJoin()
             }
         }
         println("total time: $time")
     }
 
     @Test
-    fun doGreetingConcatStringAndHandlerCancellationExceptionTest() {
+    fun doGreetingAndHandlerCancellationExceptionTest() {
         val time = measureTimeMillis() {
             runBlocking {
-                cancellationAndTimeoutPlayground.doGreetingConcatStringAndHandlerCancellationException()
+                cancellationAndTimeoutPlayground.doGreetingAndHandlerCancellationException()
             }
         }
         println("total time: $time")
