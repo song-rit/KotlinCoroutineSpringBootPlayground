@@ -12,8 +12,17 @@ class CancellationAndTimeoutPlaygroundTest {
     fun getGreetingConcatStringWithCancelAbleTest() {
         val time = measureTimeMillis() {
             runBlocking {
-                val result = cancellationAndTimeoutPlayground.getGreetingConcatStringWithCancelAble()
-                println("result: $result")
+                cancellationAndTimeoutPlayground.doGreetingConcatStringWithCancelAble()
+            }
+        }
+        println("total time: $time")
+    }
+
+    @Test
+    fun doGreetingConcatStringWithCancelAndJoinTest() {
+        val time = measureTimeMillis() {
+            runBlocking {
+                cancellationAndTimeoutPlayground.doGreetingConcatStringWithCancelAndJoin()
             }
         }
         println("total time: $time")
