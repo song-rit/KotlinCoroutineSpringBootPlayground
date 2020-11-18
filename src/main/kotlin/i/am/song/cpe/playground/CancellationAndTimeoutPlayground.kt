@@ -98,4 +98,26 @@ class CancellationAndTimeoutPlayground {
         job.cancelAndJoin()
         println("job canceled")
     }
+
+    suspend fun doGreetingAndHandlerCancellationExceptionWithNonCancellable() = withContext(Dispatchers.Default) {
+        RecordTimeInstance.initExecuteTime()
+        val job = launch {
+            try {
+                repeat(1_000) {
+                    greetingService.getGreetingWithSuspend("job : $it")
+                    delay(1000)
+                }
+            } finally {
+                withContext(NonCancellable) {
+                    greetingService.getGreetingWithSuspend("job : finally")
+                    delay(1000)
+                    greetingService.getGreetingWithSuspend("job : really finally")
+                }
+            }
+        }
+
+        delay(5000)
+        job.cancelAndJoin()
+        println("job canceled")
+    }
 }
