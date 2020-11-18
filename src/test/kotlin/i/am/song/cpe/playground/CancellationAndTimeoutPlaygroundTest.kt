@@ -27,4 +27,14 @@ class CancellationAndTimeoutPlaygroundTest {
         }
         println("total time: $time")
     }
+
+    @Test
+    fun doGreetingConcatStringAndHandlerCancellationExceptionTest() {
+        val time = measureTimeMillis() {
+            runBlocking {
+                cancellationAndTimeoutPlayground.doGreetingConcatStringAndHandlerCancellationException()
+            }
+        }
+        println("total time: $time")
+    }
 }

@@ -47,6 +47,7 @@ class CancellationAndTimeoutPlayground {
                 }
                 return false
             }
+
             var i = 0
             while (i < 20) {
                 greetingService.getGreetingWithSuspend("job1 : $i")
@@ -78,5 +79,23 @@ class CancellationAndTimeoutPlayground {
             return true
         }
         return false
+    }
+
+    suspend fun doGreetingConcatStringAndHandlerCancellationException() = withContext(Dispatchers.Default) {
+        RecordTimeInstance.initExecuteTime()
+        val job = launch {
+            try {
+                repeat(1_000) {
+                    greetingService.getGreetingWithSuspend("job : $it")
+                    delay(1000)
+                }
+            } finally {
+                greetingService.getGreetingWithSuspend("job : finally")
+            }
+        }
+
+        delay(5000)
+        job.cancelAndJoin()
+        println("job canceled")
     }
 }
