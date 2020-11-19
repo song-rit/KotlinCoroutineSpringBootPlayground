@@ -128,4 +128,19 @@ class CancellationAndTimeoutPlayground {
             delay(500)
         }
     }
+
+    suspend fun doGreetingWithTimeoutAndHandlerFinally() = withTimeout(5000L) {
+        RecordTimeInstance.initExecuteTime()
+        try {
+            repeat(1_000) {
+                greetingService.getGreetingWithSuspend("job : $it")
+                delay(500)
+            }
+        } finally {
+            withContext(NonCancellable) {
+                delay(1000)
+                println("finally job")
+            }
+        }
+    }
 }
