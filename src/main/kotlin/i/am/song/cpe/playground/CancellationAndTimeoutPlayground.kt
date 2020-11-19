@@ -120,4 +120,12 @@ class CancellationAndTimeoutPlayground {
         job.cancelAndJoin()
         println("job canceled")
     }
+
+    suspend fun doGreetingWithTimeout() = withTimeout(5000L) {
+        RecordTimeInstance.initExecuteTime()
+        repeat(1_000) {
+            greetingService.getGreetingWithSuspend("job : $it")
+            delay(500)
+        }
+    }
 }
