@@ -26,4 +26,9 @@ class ComposingSuspendingFunctionsTest {
     fun doSumByConcurrentUsingAsyncGlobalScopeTest() {
         runWithRecord { composingSuspendingFunctions.doSumByConcurrentUsingAsyncGlobalScope() }
     }
+
+    @Test
+    fun doSumUsingConcurrentMethodTest() {
+        runWithRecord { composingSuspendingFunctions.doSumUsingConcurrentMethod() }
+    }
 }

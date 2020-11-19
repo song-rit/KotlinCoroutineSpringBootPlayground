@@ -28,6 +28,12 @@ class ComposingSuspendingFunctions {
         doSomethingUsefulTwo()
     }
 
+    private suspend fun concurrentSum(): Int = coroutineScope {
+        val one = async { doSomethingUsefulOne() }
+        val two = async { doSomethingUsefulTwo() }
+        one.await() + two.await()
+    }
+
     fun doSumBySequential() {
         RecordTimeInstance.initExecuteTime()
         runBlocking {
@@ -65,6 +71,13 @@ class ComposingSuspendingFunctions {
             val two = somethingUsefulTwoAsync()
             // CoroutineStart.LAZY, it only start coroutine when it's result required by await.
             greetingService.printByRecord("The answer is ${one.await() + two.await()}")
+        }
+    }
+
+    fun doSumUsingConcurrentMethod() {
+        RecordTimeInstance.initExecuteTime()
+        runBlocking {
+            greetingService.printByRecord("The answer is ${concurrentSum()}")
         }
     }
 
