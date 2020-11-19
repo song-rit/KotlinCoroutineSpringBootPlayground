@@ -1,5 +1,6 @@
 package i.am.song.cpe.playground
 
+import i.am.song.cpe.common.runWithRecord
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import kotlin.system.measureTimeMillis
@@ -70,13 +71,10 @@ class CancellationAndTimeoutPlaygroundTest {
 
     @Test
     fun doGreetingWithTimeoutOrNullAndHandlerExceptionTest() {
-        val time = measureTimeMillis() {
-            runBlocking {
-                cancellationAndTimeoutPlayground.doGreetingWithTimeoutOrNullAndHandlerException()
-            }
+        val unit = {
+            runBlocking { cancellationAndTimeoutPlayground.doGreetingWithTimeoutOrNullAndHandlerException() }
         }
-        println("total time: $time")
+        runWithRecord(unit)
     }
-
-
 }
+
