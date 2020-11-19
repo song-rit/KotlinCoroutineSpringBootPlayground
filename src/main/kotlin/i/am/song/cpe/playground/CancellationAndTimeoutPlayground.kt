@@ -143,4 +143,17 @@ class CancellationAndTimeoutPlayground {
             }
         }
     }
+
+    suspend fun doGreetingWithTimeoutOrNullAndHandlerException() = withTimeoutOrNull(5000L) {
+        RecordTimeInstance.initExecuteTime()
+        try {
+            repeat(1_000) {
+                greetingService.getGreetingWithSuspend("job : $it")
+                delay(500)
+            }
+        } catch (ex: TimeoutCancellationException) {
+           ex.printStackTrace()
+            println("handler coroutine timeout exception job")
+        }
+    }
 }
