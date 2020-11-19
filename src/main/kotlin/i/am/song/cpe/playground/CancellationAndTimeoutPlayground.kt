@@ -3,6 +3,7 @@ package i.am.song.cpe.playground
 import i.am.song.cpe.common.GreetingService
 import i.am.song.cpe.common.RecordTimeInstance
 import kotlinx.coroutines.*
+import javax.annotation.Resource
 import kotlin.random.Random
 
 class CancellationAndTimeoutPlayground {
@@ -152,8 +153,70 @@ class CancellationAndTimeoutPlayground {
                 delay(500)
             }
         } catch (ex: TimeoutCancellationException) {
-           ex.printStackTrace()
+            ex.printStackTrace()
             println("handler coroutine timeout exception job")
         }
+    }
+
+    fun asynchronousTimeoutReleaseResourceAfterTimeout() {
+        var acquired = 0
+
+        class Resource {
+            init {
+                acquired++
+            }
+
+            fun close() {
+                acquired--
+            }
+        }
+
+        runBlocking {
+            repeat(1_000) {
+                launch {
+                    val resource = withTimeout(60) {
+                        delay(1)
+                        Resource()
+                    }
+                    resource.close()
+                }
+            }
+        }
+
+        //wait coroutine complete
+        println(acquired)
+    }
+
+    fun asynchronousTimeoutReleaseResourceByFinally() {
+        var acquired = 0
+
+        class Resource {
+            init {
+                acquired++
+            } // Acquire the resource
+
+            fun close() {
+                acquired--
+            }
+        }
+
+        runBlocking {
+            repeat(1_000) {
+                launch {
+                    var resource: Resource? = null
+                    try {
+                        withTimeout(60) {
+                            delay(50)
+                            resource = Resource()
+                        }
+                    } finally {
+                        resource?.close()
+                    }
+                }
+            }
+        }
+
+        //wait coroutine complete
+        println(acquired)
     }
 }

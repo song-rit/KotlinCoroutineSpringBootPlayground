@@ -76,5 +76,21 @@ class CancellationAndTimeoutPlaygroundTest {
         }
         runWithRecord(unit)
     }
+
+    @Test
+    fun asynchronousTimeoutReleaseResourceAfterTimeoutTest() {
+        val unit = {
+            cancellationAndTimeoutPlayground.asynchronousTimeoutReleaseResourceAfterTimeout()
+        }
+        runWithRecord(unit)
+    }
+
+    @Test
+    fun asynchronousTimeoutReleaseResourceByFinallyTest() {
+        val unit = {
+            cancellationAndTimeoutPlayground.asynchronousTimeoutReleaseResourceByFinally()
+        }
+        runWithRecord(unit)
+    }
 }
 
