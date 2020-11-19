@@ -4,6 +4,10 @@ class GreetingService {
 
     private val className = this::class.simpleName.toString()
 
+    fun printByRecord(msg: String) {
+        printMessage(msg)
+    }
+
     fun greeting(msg: String) {
         printMessage(msg)
     }
