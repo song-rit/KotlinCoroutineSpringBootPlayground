@@ -2,10 +2,7 @@ package i.am.song.cpe.playground
 
 import i.am.song.cpe.common.GreetingService
 import i.am.song.cpe.common.RecordTimeInstance
-import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class ComposingSuspendingFunctions {
 
@@ -19,6 +16,16 @@ class ComposingSuspendingFunctions {
     private suspend fun doSomethingUsefulTwo(): Int {
         delay(1000L)
         return 10
+    }
+
+    // The result type of somethingUsefulOneAsync is Deferred<Int>
+    fun somethingUsefulOneAsync() = GlobalScope.async {
+        doSomethingUsefulOne()
+    }
+
+    // The result type of somethingUsefulTwoAsync is Deferred<Int>
+    fun somethingUsefulTwoAsync() = GlobalScope.async {
+        doSomethingUsefulTwo()
     }
 
     fun doSumBySequential() {
@@ -47,6 +54,16 @@ class ComposingSuspendingFunctions {
             // CoroutineStart.LAZY, it only start coroutine when it's result required by await.
             one.start() // start async
             two.start() // start async
+            greetingService.printByRecord("The answer is ${one.await() + two.await()}")
+        }
+    }
+
+    fun doSumByConcurrentUsingAsyncGlobalScope() {
+        RecordTimeInstance.initExecuteTime()
+        runBlocking {
+            val one = somethingUsefulOneAsync()
+            val two = somethingUsefulTwoAsync()
+            // CoroutineStart.LAZY, it only start coroutine when it's result required by await.
             greetingService.printByRecord("The answer is ${one.await() + two.await()}")
         }
     }
