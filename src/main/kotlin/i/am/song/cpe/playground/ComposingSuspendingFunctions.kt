@@ -34,6 +34,23 @@ class ComposingSuspendingFunctions {
         one.await() + two.await()
     }
 
+    private suspend fun failedConcurrentSum(): Int = coroutineScope {
+        val one = async<Int> {
+            try {
+                delay(Long.MAX_VALUE)
+                10
+            } finally {
+                println("First child was cancel")
+            }
+        }
+
+        val two = async<Int> {
+            println("Second child throws an exception")
+            throw ArithmeticException()
+        }
+        one.await() + two.await()
+    }
+
     fun doSumBySequential() {
         RecordTimeInstance.initExecuteTime()
         runBlocking {
@@ -81,4 +98,14 @@ class ComposingSuspendingFunctions {
         }
     }
 
+    fun doFailedConcurrentSumMethod() {
+        runBlocking {
+            try {
+                failedConcurrentSum()
+            } catch (ex: ArithmeticException) {
+                println("Computation failed with ArithmeticException")
+            }
+
+        }
+    }
 }

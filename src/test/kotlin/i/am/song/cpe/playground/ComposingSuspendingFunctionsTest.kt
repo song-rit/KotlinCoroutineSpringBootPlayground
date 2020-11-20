@@ -31,4 +31,9 @@ class ComposingSuspendingFunctionsTest {
     fun doSumUsingConcurrentMethodTest() {
         runWithRecord { composingSuspendingFunctions.doSumUsingConcurrentMethod() }
     }
+
+    @Test
+    fun doFailedConcurrentSumMethodTest() {
+        runWithRecord { composingSuspendingFunctions.doFailedConcurrentSumMethod() }
+    }
 }
