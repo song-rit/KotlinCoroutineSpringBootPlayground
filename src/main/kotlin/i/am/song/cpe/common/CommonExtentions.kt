@@ -9,3 +9,5 @@ import kotlin.system.measureTimeMillis
      println("total time: $time")
 }
 
+fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
+
