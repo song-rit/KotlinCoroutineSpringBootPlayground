@@ -18,7 +18,13 @@ class CoroutineContextAndDispatchersTest {
     fun unconfinedVsConfinedDispatcherTest() {
         runWithRecord {
             coroutineContextAndDispatchers.unconfinedVsConfinedDispatcher()
+        }
+    }
 
+    @Test
+    fun debugCoroutineWithLoggingTest() {
+        runWithRecord {
+            coroutineContextAndDispatchers.debugCoroutineWithLogging()
         }
     }
 }

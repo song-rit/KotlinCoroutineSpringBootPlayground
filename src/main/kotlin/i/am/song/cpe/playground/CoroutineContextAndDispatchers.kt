@@ -1,5 +1,6 @@
 package i.am.song.cpe.playground
 
+import i.am.song.cpe.common.log
 import kotlinx.coroutines.*
 
 class CoroutineContextAndDispatchers {
@@ -56,6 +57,22 @@ class CoroutineContextAndDispatchers {
                 delay(1000)
                 println("main runBlocking: After delay in thread ${Thread.currentThread().name}")
             }
+        }
+
+    }
+
+    fun debugCoroutineWithLogging() {
+        runBlocking {
+            val a = async {
+                log("I'm computing a piece of the answer")
+                10
+            }
+            val b = async {
+                log("I'm computing another piece of the answer")
+                20
+            }
+
+            log("The answer is ${a.await() * b.await()}")
         }
 
     }
