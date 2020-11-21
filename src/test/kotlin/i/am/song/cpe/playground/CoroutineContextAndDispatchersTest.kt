@@ -13,4 +13,12 @@ class CoroutineContextAndDispatchersTest {
             coroutineContextAndDispatchers.dispatcherAndThread()
         }
     }
+
+    @Test
+    fun unconfinedVsConfinedDispatcherTest() {
+        runWithRecord {
+            coroutineContextAndDispatchers.unconfinedVsConfinedDispatcher()
+
+        }
+    }
 }
